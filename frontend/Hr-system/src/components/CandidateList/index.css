@@ -1,0 +1,112 @@
+/* Wrapper */
+.rz-wrapper {
+  width: 100%;
+  max-width: 992px;
+  margin: 40px auto;
+  padding: 0 16px;
+  font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+}
+
+.edit-icon{
+    font-size:24px;
+}
+.edit-btn{
+    background-color: transparent;
+    border-width:0px;
+    cursor:pointer;
+}
+/* Title */
+.rz-title {
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  color: #1f2937;
+  text-align: center;
+}
+
+.rz-add-btn{
+    text-align:right;
+    margin:20px 0px  20px 20px;
+}
+.add-btn{
+    background-color:crimson;
+    padding:14px;
+    border-radius:8px;
+    color:#ffffff;
+    font-size:18px;
+    font-weight:bold;
+    border:0px solid;
+    cursor:pointer;
+}
+.add-btn:hover{
+    background-color:red;
+}
+
+/* Table container */
+.rz-table-wrap {
+  width: 100%;
+  overflow-x: auto; /* responsive horizontal scroll */
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+}
+
+/* Table */
+.rz-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* ensures columns don't shrink too much */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.rz-thead {
+  background: linear-gradient(90deg, #4f46e5, #3b82f6);
+  color: #ffffff;
+}
+
+.rz-th,
+.rz-td {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 15px;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.rz-th {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Zebra striping */
+.rz-tbody tr:nth-child(odd) {
+  background: #ffffff;
+}
+.rz-tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+/* Hover effect */
+.rz-tbody tr:hover {
+  background: #eef2ff;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}
+.each-row-data td{
+    padding:15px;
+}
+
+/* Responsive small screens */
+@media (max-width: 640px) {
+  .rz-th,
+  .rz-td {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .rz-table {
+    min-width: 100%;
+  }
+}

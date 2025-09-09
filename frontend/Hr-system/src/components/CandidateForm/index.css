@@ -1,0 +1,59 @@
+*{
+    font-family:"Roboto";
+    box-sizing: border-box;
+}
+.update-form{
+    margin-top:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    min-height:100vh;
+    
+}
+.form-data{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding:20px;
+    width:30%;
+    border-radius:4px;
+    border:2px solid #000000;
+
+}
+.form-data-container{
+    display:flex;
+    flex-direction:column;
+    margin:10px;
+}
+.label-data{
+    font-size:18px;
+    padding-bottom:5px;
+}
+.input-box{
+    padding:6px;
+    border:2px solid #000000;
+    border-radius:4px;
+    font-size:18px;
+    font-weight:bold;
+}
+.update-btn{
+    background-color:blue;
+    color:#ffffff;
+    border-radius:8px;
+    width:90%;
+    height:36px;
+    font-size:18px;
+    border-width:0px;
+    outline:none;
+    cursor:pointer;
+    margin:10px;
+    
+}
+.update-btn:hover{
+    background-color:darkblue;
+}
+.update-container{
+    text-align:center;
+}
+.input-not-allowed{
+    cursor:not-allowed;
+}
