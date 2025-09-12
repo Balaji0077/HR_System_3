@@ -2,7 +2,6 @@ import {useState,useEffect} from 'react'
 import {Link,useNavigate} from "react-router-dom"
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import CandidateForm from '../CandidateForm';
 import "./index.css"
 
 const CandidateList = ()=>{
@@ -21,18 +20,16 @@ const CandidateList = ()=>{
     },[])
   
     const editData = (id)=>{
-         
-          navigate(`/form/${id}`)
-         
-          
+          navigate(`/form/${id}`)          
     }
+
     const deleteData = async (id)=>{
       const option = {
         method:"delete"
       }
       const deleteResponse = await fetch(`http://localhost:8080/api/candidates/${id}`,option);
       const responseOfDelete = await deleteResponse.text();
-      // console.log(responseOfDelete);
+      
        const response  = await fetch("http://localhost:8080/api/candidates");
         const data = await response.json();
       setCandidate(data);
@@ -46,7 +43,10 @@ const CandidateList = ()=>{
     return (
     <>
     <div className="rz-wrapper">
-      <h1 className="rz-title">Candidates List</h1>
+      <div className="profile-container">
+        <img src="https://img.freepik.com/free-vector/user-with-pie-chart_78370-7032.jpg?t=st=1757505794~exp=1757509394~hmac=814b7ac17e601c1661f262030c2713f607e59818f13fb98266089852c6fe73bb&w=1480" alt="candidate" className="profile-image"/>
+       <h1 className="rz-title">Candidates List</h1>
+      </div>
       <div className="rz-add-btn"><button className="add-btn" onClick={addCandidate}>Add Candidate</button></div>
       <div className="rz-table-wrap">
         <table className="rz-table">

@@ -62,23 +62,23 @@ const CandidateAddForm = ()=>{
         <form className="form-data" onSubmit={updatedData}>
             <div className="form-data-container">
                 <label htmlFor="name" className="label-data">Name</label>
-                <input type="text" value={name} onChange={changeName} id="name" className="input-box"/>
+                <input type="text" required value={name} onChange={changeName} id="name" className="input-box"/>
             </div>
              <div className="form-data-container">
                 <label htmlFor="email" className="label-data">Email</label>
-                <input type="email" value={email} onChange={changeEmail} id="email" className="input-box"/>
+                <input type="email" required value={email} onChange={changeEmail} id="email" className="input-box"/>
             </div>
              <div className="form-data-container">
                 <label htmlFor="no" className="label-data">Phone Number</label>
-                <input type="text" value={phone} id="no" className="input-box" onChange={changePhone}/>
+                <input type="text" required value={phone} id="no" className="input-box" onChange={changePhone}/>
             </div>
              <div className="form-data-container">
                 <label htmlFor="status" className="label-data">Current Status</label>
-                <input type="text" value={status} id="status" className="input-box" onChange={changeStatus}/>
+                <input type="text" required value={status} id="status" className="input-box" onChange={changeStatus}/>
             </div>
              <div className="form-data-container">
                 <label htmlFor="resume" className="label-data">Resume Link</label>
-                <input type="text" value={resume} id="resume" className="input-box" onChange={changeResume}/>
+                <input type="text" required value={resume} id="resume" className="input-box" onChange={changeResume}/>
             </div>
             <div className="update-container">
                 <button type="submit" className='update-btn'>Add Candidate</button>

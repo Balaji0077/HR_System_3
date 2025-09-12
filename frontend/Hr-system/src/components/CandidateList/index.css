@@ -7,6 +7,16 @@
   font-family: "Segoe UI", Roboto, system-ui, sans-serif;
 }
 
+.profile-image{
+  width:10%;
+}
+
+.profile-container{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+}
+
 .edit-icon{
     font-size:24px;
 }
@@ -17,11 +27,12 @@
 }
 /* Title */
 .rz-title {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 900;
   margin-bottom: 12px;
   color: #1f2937;
   text-align: center;
+  align-self:center;
 }
 
 .rz-add-btn{

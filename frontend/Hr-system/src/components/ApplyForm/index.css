@@ -1,0 +1,110 @@
+*{
+    padding:0px;
+    margin:0px;
+    font-family:"Roboto";
+}
+.apply-container{
+    background-image: linear-gradient(to right,#EEB4AE,#94BBE9);
+    min-height:100vh;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+}
+.role-image{
+    width:75px;
+    border-radius:120px;
+    font-size:50px;
+}
+.role-image-skills{
+     width:80px;
+     margin:8px;
+}
+.apply-heading{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.apply-image-context-container{
+    display:flex;
+    align-items:center;
+}
+.apply-context{
+    font-size:25px;
+    font-weight:bold;
+}
+.apply-details-container{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    width:60vw;
+    padding:20px;
+    overflow:auto;
+}
+.apply-flex-containers{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
+.candidates-list-display-container{
+    list-style-type:none;
+    padding-left:0px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+.candidates-inner-container{
+    display:flex;
+    align-items:center;
+    margin:20px;
+}
+.candidate-profile{
+    font-size:35px;
+}
+.candidate-name-applied{
+    font-size:26px;
+    font-weight:bolder;
+}
+.apply-name{
+    padding:10px;
+    border-radius:4px;
+    font-size:16px;
+    width:100%;
+    font-weight:bold;
+    outline-color:coral;
+    outline-width: 10px;
+    border-width:0px;
+    margin:10px;
+}
+.apply-details-container-special{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.apply-btn-candidate-container{
+    text-align:center;
+}
+.apply-btn-candidate{
+    background-color:chocolate;
+    padding:12px;
+    border-radius:4px;
+    color:#ffffff;
+    outline:none;
+    margin:10px;
+    width:75%;
+    border-width:0px;
+    font-size:18px;
+    font-weight:900;
+    cursor:pointer;
+}
+.apply-btn-candidate:hover{
+    background-color:coral;
+}
+.error-popup {
+  background-color: #ffdddd;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in-out;
+}
