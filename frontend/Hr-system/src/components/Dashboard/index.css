@@ -1,0 +1,74 @@
+*{
+    font-family:"Roboto";
+}
+
+.dashboard-container{
+    background-image:linear-gradient(to right,#EEB4AE,#94BBE9);
+    min-height:100vh;
+}
+.candidates-container{
+    background-color:#ffffff;
+    border:0px solid #000000;
+    border-radius:12px;
+    width:280px;
+    height:400px;
+    
+}
+.candidate-image{
+    width:90%;
+}
+.dashboard-navigator{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+    min-height:80vh;
+}
+.candidate-text{
+    text-align:center;
+    margin-bottom:10px;
+}
+.btn-checkout-container{
+    background-color:#5d16f7;
+    width:90%;
+    padding:8px;
+    margin:10px;
+    border-radius:8px;
+    display:flex;
+    justify-content:center;
+    cursor:pointer;
+    
+}
+.btn-checkout-container:hover{
+     width:93%;
+}
+.checkout-btn{
+     background-color:#5d16f7;
+     border-width:0px;
+     font-size:18px;
+     color:#ffffff;
+     font-weight:bold;
+     cursor:pointer;
+     
+}
+.link-to{
+    text-decoration: none;
+}
+.checkout-arrow{
+    color:#ffffff;
+    font-size:22px;
+    margin-left:10px;
+}
+.line{
+    border:1px solid #000000;
+   
+}
+.heading-profile-candidate-dashboard{
+    padding:20px;
+}
+.checkout-btn-outer-dasnboard{
+    padding:20px;
+}
+.candidate-apply-for-job-text{
+    font-size:18px;
+}

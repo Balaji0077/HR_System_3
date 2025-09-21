@@ -1,0 +1,51 @@
+.nav-bar{
+    background-color: rgba(255, 255, 255, 0.4);
+    min-width:100vw;
+    padding:20px;
+    border-radius:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.neon-text {
+     font-size: 50px;
+      font-weight: bold;
+      color: #000000; /* black text */
+      text-shadow: 
+        1px 1px 0 #444,
+        2px 2px 0 #666,
+        3px 3px 0 #888,
+        4px 5px 0 #aaa,
+        5px 5px 0 #ccc;
+   
+}
+.logo-container{
+     display:flex;
+     border:2px solid;
+     width:250px;
+     border-radius:4px;
+}
+.cabinet{
+    align-self:flex-end;
+    font-weight:bold;
+    margin-left:10px;
+    font-size:18px;
+}
+.logout-btn{
+    background-color:transparent;
+    border:0px;
+    font-weight:bold;
+    font-size:25px;
+    padding:10px;
+    cursor:pointer;
+    margin-left:0px;
+}
+.logout-container{
+    display:flex;
+}
+.logout-icon{
+    font-size:30px;
+    align-self:center;
+    margin-right:0px;
+    cursor:pointer;
+}

@@ -1,4 +1,5 @@
-import { useParams,useNavigate} from "react-router-dom"
+import { useParams,useNavigate,Navigate} from "react-router-dom"
+import Cookies from "js-cookie"
 import {useState,useEffect} from "react"
 import "./index.css"
 
@@ -13,7 +14,16 @@ const CandidateForm = ()=>{
     
     useEffect(()=>{
         const fetchData = async()=>{
-            const data = await fetch(`http://localhost:8080/api/candidates/${params.id}`)
+
+             const token = Cookies.get("token")
+            const options = {
+                method:"GET",
+                 headers: {
+                    "Content-Type": "application/json",
+                     "Authorization": `Bearer ${token}`
+                } 
+            }
+            const data = await fetch(`http://localhost:8080/api/candidates/${params.id}`,options)
             const response = await data.json();
             setName(response.name);
             setEmail(response.email);
@@ -44,11 +54,13 @@ const CandidateForm = ()=>{
             currentStatus:status,
             resumeLink:resume
         }
-
+         
+        const token = Cookies.get("token") 
         const option = {
             method:"PUT",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(updated)
         }
@@ -56,11 +68,15 @@ const CandidateForm = ()=>{
         const fetchData = await fetch(`http://localhost:8080/api/candidates/${params.id}`,option);
         const data = await fetchData.json();
         console.log(data);
-
         navigate("/");
     }
+
+    
    return (
-    <div className="update-form">
+    <>
+    {
+       Cookies.get("token")!==undefined?
+          <div className="update-form">
         <h1>Candidate's Updation Form</h1>
         <form className="form-data" onSubmit={updatedData}>
             <div className="form-data-container">
@@ -87,8 +103,11 @@ const CandidateForm = ()=>{
                 <button type="submit" className='update-btn'>Update</button>
             </div>
         </form>
-    </div>
-    
+          </div>
+        :
+        <Navigate to="/login"/>
+    }
+   </>
    )
 }
 

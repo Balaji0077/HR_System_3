@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.system.hr.entity.Candidate;
@@ -22,7 +23,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@CrossOrigin(origins="http://localhost:5173/")
+@CrossOrigin(origins="http://localhost:5173", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS},
+allowedHeaders = "*",
+allowCredentials = "true")
 @Tag(name = "Candidate API", description = "Operations related to candidates")
 public class CandidateController {
 	
@@ -81,6 +84,8 @@ public class CandidateController {
 		 return ResponseEntity.status(HttpStatus.OK).body(updateIndividual);
 		 
 	}
+	
+	
 	
 	
 } 

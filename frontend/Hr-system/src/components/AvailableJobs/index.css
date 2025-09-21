@@ -3,7 +3,8 @@
     box-sizing:border-box;
 }
 .available-container{
-    padding:20px;
+     background-image:linear-gradient(to right,#EEB4AE,#94BBE9);
+     min-height:100vh;
 }
 .opening-image{
     width:10%;
@@ -13,6 +14,7 @@
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
+    padding:10px;
 }
 .heading-marquee-container{
     display:flex;
@@ -22,10 +24,12 @@
 }
 .job-list-container{
     list-style-type:none;
+    padding:20px;
     padding-left:0px;
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;
+    
 
 }
 .list-container{

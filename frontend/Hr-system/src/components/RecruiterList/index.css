@@ -2,6 +2,7 @@
 .recruiter-image{
     width:100px;
     margin:20px;
+    border-radius:20px;
 }
 .recruiter-container{
    display:flex;
@@ -15,6 +16,8 @@
     display:flex;
     flex-direction:column;
     align-items:center;
+    background-image:linear-gradient(to right,#EEB4AE,#94BBE9);
+    min-height:100vh;
 }
 .post-job-container{
     margin-top:20px;

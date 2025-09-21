@@ -1,6 +1,8 @@
 import {useState,useEffect} from "react"
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Navigate} from "react-router-dom"
+import Cookies from "js-cookie"
 import "./index.css"
+import Navbar from "../Navbar"
 
 const AvailableJobs = ()=>{
        
@@ -10,8 +12,17 @@ const AvailableJobs = ()=>{
         navigate(`/jobapply/${id}`)
     } 
      useEffect(()=>{
+        
+        const token = Cookies.get("token")
+        const option = {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+             } 
+        }
         const fetchData = async ()=>{
-            const response = await fetch("http://localhost:8080/api/jobs");
+            const response = await fetch("http://localhost:8080/api/jobs",option);
             const data = await response.json();
             setJob(data)
         }
@@ -21,7 +32,11 @@ const AvailableJobs = ()=>{
       
      return (
         <>
+          {
+            
+           Cookies.get("token")!==undefined? 
            <div className="available-container">
+                  <Navbar/>
                   <div className="image-container">
                        <img src="https://cdn-icons-png.freepik.com/512/17648/17648801.png?ga=GA1.1.1491802060.1757505789" className="opening-image" alt="openings"/>
                        <div className="heading-marquee-container">
@@ -58,6 +73,9 @@ const AvailableJobs = ()=>{
                      </ul>
                   </div>
            </div>
+            :
+           <Navigate to="/login"/>
+           }  
         </>
      )
 }

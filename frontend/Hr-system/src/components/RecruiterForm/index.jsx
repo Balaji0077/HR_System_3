@@ -1,5 +1,6 @@
-import { useParams,useNavigate} from "react-router-dom"
+import { useParams,useNavigate,Navigate} from "react-router-dom"
 import {useState,useEffect} from "react"
+import Cookies from 'js-cookie'
 import "./index.css"
 
 const RecruiterForm = ()=>{
@@ -11,7 +12,16 @@ const RecruiterForm = ()=>{
     const [status,setStatus] = useState("")
     useEffect(()=>{
         const fetchData = async()=>{
-            const data = await fetch(`http://localhost:8080/api/jobs/${params.id}`)
+
+            const token = Cookies.get("token")
+            const options = {
+                method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+             } 
+            }
+            const data = await fetch(`http://localhost:8080/api/jobs/${params.id}`,options)
             const response = await data.json();
             setName(response.title);
             setEmail(response.description);
@@ -46,11 +56,13 @@ const RecruiterForm = ()=>{
             recruiterId:status
            
         }
-
+          
+        const token = Cookies.get("token")
         const option = {
             method:"PUT",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(updated)
         }
@@ -63,7 +75,9 @@ const RecruiterForm = ()=>{
     }
 
 
-    return <div className="update-form">
+    return <>{
+         Cookies.get("token")!==undefined?
+        <div className="update-form">
         <h1>Update Job Details</h1>
         <form className="form-data" onSubmit={updatedData}>
             <div className="form-data-container">
@@ -88,6 +102,10 @@ const RecruiterForm = ()=>{
             </div>
         </form>
     </div>
+    :
+    <Navigate to="/login"/>
+        }
+    </>
 }
 
 export default RecruiterForm

@@ -1,4 +1,8 @@
 /* Wrapper */
+.candidate-list-container{
+   background-image:linear-gradient(to right,#EEB4AE,#94BBE9);
+    min-height:100vh;
+}
 .rz-wrapper {
   width: 100%;
   max-width: 992px;
@@ -9,6 +13,8 @@
 
 .profile-image{
   width:10%;
+   border-radius:100px;
+   margin-right:10px;
 }
 
 .profile-container{

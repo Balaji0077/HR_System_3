@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react'
-import {useParams,useNavigate} from "react-router-dom"
+import {useParams,useNavigate,Navigate} from "react-router-dom"
+import Cookies from "js-cookie"
 import { FaSuitcase } from "react-icons/fa";
 import { RiAccountCircleFill } from "react-icons/ri";
 
@@ -15,13 +16,30 @@ const ApplyForm = ()=>{
     const [applied,setApplied] = useState([])
 
      const listData = async ()=>{
-                const candidatesData = await fetch(`http://localhost:8080/api/jobs/names/${param.id}`);
+                
+                const token = Cookies.get("token")
+                const options={
+                    method: "GET",
+                   headers: {
+                   "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                   } 
+                }
+                const candidatesData = await fetch(`http://localhost:8080/api/jobs/names/${param.id}`,options);
                 const data = await candidatesData.json();
                 setApplied([...data]);
     }
     useEffect(()=>{
         const fetchData = async ()=>{
-            const response = await fetch(`http://localhost:8080/api/jobs/${param.id}`);
+            const token = Cookies.get("token")
+                const options={
+                    method: "GET",
+                   headers: {
+                   "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                   } 
+                }
+            const response = await fetch(`http://localhost:8080/api/jobs/${param.id}`,options);
             const data = await response.json();
             setJob(data)
         }
@@ -56,10 +74,13 @@ const ApplyForm = ()=>{
             name:name,
             email:email
         }
+
+        const token = Cookies.get("token")
         const option={
             method:"POST",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                 "Authorization": `Bearer ${token}`
             },
             body:JSON.stringify(data)
         }
@@ -77,9 +98,11 @@ const ApplyForm = ()=>{
        
         
      }
-    return (
-        
-        <div className="apply-container">
+    return  <>
+            {  
+              Cookies.get("token")!==undefined?
+             
+            <div className="apply-container">
            <div className="apply-heading">
               <h1>JOB DETAILS PAGE</h1>
            </div>
@@ -129,10 +152,10 @@ const ApplyForm = ()=>{
 
                     <form onSubmit={applyChanges}>
                         <div>
-                           <input type="text" value={name} required placeholder="Enter Your Name" onChange={changeName} className="apply-name"/>
+                           <input type="text" value={name} required placeholder="Enter Candidate Name" onChange={changeName} className="apply-name"/>
                         </div>
                         <div>
-                           <input type="email" required placeholder="Enter Your Email" onChange={changeEmail} className="apply-name"/>
+                           <input type="email" required placeholder="Enter Candidate Email" onChange={changeEmail} className="apply-name"/>
                         </div>
                         <div className="apply-btn-candidate-container">
                             <button type="submit" value={email} className="apply-btn-candidate">Apply</button>
@@ -144,8 +167,14 @@ const ApplyForm = ()=>{
            </div>
 
 
-        </div>
-    )
+             </div>
+             :
+            <Navigate to="/login"/>
+        
+        }  
+        </>
+                    
+    
    
 }
 

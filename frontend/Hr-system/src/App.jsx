@@ -10,6 +10,9 @@ import RecruiterForm from './components/RecruiterForm'
 import AvailableJobs from './components/AvailableJobs'
 import ApplyForm from './components/ApplyForm/Index'
 import NotFound from './components/NotFound'
+import Login from './components/Login'
+import DashBoard from './components/Dashboard'
+import Register from './components/Register'
 
 function App() {
   
@@ -24,6 +27,9 @@ function App() {
              <Route path="/recruiter/:id" element={<RecruiterForm/>}/>
              <Route path="/openings" element={<AvailableJobs/>}/>
              <Route path="/jobapply/:id" element={<ApplyForm/>}/>
+             <Route path="/login" element={<Login/>}/>
+             <Route path="/register" element={<Register/>}/>
+             <Route path="/dashboard" element={<DashBoard/>} />
              <Route path="*" element={<NotFound/>} />
              
          </Routes>

@@ -1,4 +1,5 @@
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Navigate} from "react-router-dom"
+import Cookies from 'js-cookie'
 import {useState} from "react"
 import "./index.css"
 
@@ -37,11 +38,13 @@ const RecruiterPostForm = ()=>{
             recruiterId:status
             
         }
-
+        
+        const token = Cookies.get("token")
         const option = {
             method:"POST",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(updated)
         }
@@ -54,7 +57,9 @@ const RecruiterPostForm = ()=>{
     }
 
     
-   return <div className="update-form">
+   return <>
+   {  Cookies.get("token")!==undefined?
+    <div className="update-form">
         <h1>Post Job </h1>
         <form className="form-data" onSubmit={updatedData}>
             <div className="form-data-container">
@@ -79,6 +84,10 @@ const RecruiterPostForm = ()=>{
             </div>
         </form>
     </div>
+    :
+    <Navigate to="/login"/>
+}
+    </>
 }
 
 export default RecruiterPostForm

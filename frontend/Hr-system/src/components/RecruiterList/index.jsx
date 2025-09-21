@@ -1,38 +1,82 @@
-import {useNavigate} from "react-router-dom"
+import {useNavigate,Navigate} from "react-router-dom"
 import {useState,useEffect} from "react"
+import Cookies from "js-cookie"
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import "./index.css"
+import Navbar from "../Navbar";
 
 const RecruiterList = ()=>{
 
     const [jobsList,setJobList] = useState([]);
+    const [role,setRole] = useState("");
     const navigate = useNavigate();
     
     useEffect(()=>{
           const fetchData = async ()=>{
-             const response  = await fetch("http://localhost:8080/api/jobs");
+
+            const token = Cookies.get("token")
+            const options = {
+               method: "GET",
+               headers: {
+                   "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                 } 
+             }
+             const response  = await fetch("http://localhost:8080/api/jobs",options);
              const data = await response.json();
              setJobList(data);
         }
     
           fetchData();
         },[])
+    
+    useEffect(()=>{
+      const token = Cookies.get("token")
+      const email = Cookies.get("username")
+         const option = {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+             } 
+         }
+        async function role (){
+            const response = await fetch(`http://localhost:8080/api/check/${email}`,option)
+            const data = await response.json();
+            setRole(data.role);
+        }
 
+        role()
+    },[])
+    
      const addJob =  ()=>{
      navigate("/postjob")
      }
 
     const deleteData = async (id)=>{
+      const token = Cookies.get("token")
       const option = {
-        method:"delete"
+        method:"delete",
+        headers: {
+                   "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                 } 
       }
       const deleteResponse = await fetch(`http://localhost:8080/api/jobs/${id}`,option);
       const responseOfDelete = await deleteResponse.text();
       // console.log(responseOfDelete);
-       const response  = await fetch("http://localhost:8080/api/jobs");
+
+      const options = {
+         method: "GET",
+               headers: {
+                   "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                 } 
+      }
+       const response  = await fetch("http://localhost:8080/api/jobs",options);
         const data = await response.json();
-      setJobList(data);
+       setJobList(data);
       
     } 
 
@@ -41,7 +85,10 @@ const RecruiterList = ()=>{
     }
 
     return (
+      <>
+      { Cookies.get("token")!==undefined?
       <div className="recruiter-main-container">
+        <Navbar/>
         <div className="recruiter-container">
           <h1>
             Recruiter List
@@ -71,9 +118,11 @@ const RecruiterList = ()=>{
                             <th className="rz-th">
                              Edit
                            </th>
+                           { role==="Role_Admin"&&
                             <th className="rz-th">
                               Delete
-                           </th>
+                             </th>
+                           }
                        </tr>
                      </thead>
                      <tbody className="rz-tbody">
@@ -88,7 +137,7 @@ const RecruiterList = ()=>{
                                     <td style={{"textAlign":"center"}}>{each.recruiterId}</td>
                             
                                     <td ><button  className="edit-btn" onClick={()=>editData(each.id)}><MdEdit className="edit-icon"/></button></td>
-                                    <td ><button className="edit-btn" onClick={()=>deleteData(each.id)}><MdDelete className="edit-icon"/></button></td>
+                                    {role==="Role_Admin"&&<td ><button className="edit-btn" onClick={()=>deleteData(each.id)}><MdDelete className="edit-icon"/></button></td>}
                                 </tr>
                                
                              
@@ -100,7 +149,11 @@ const RecruiterList = ()=>{
                  </div>
        </div>
 
-      </div>       
+      </div>
+      :
+      <Navigate to="/login"/>
+     }    
+     </>    
     )
 }
 

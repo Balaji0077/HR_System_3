@@ -3,12 +3,13 @@
     box-sizing: border-box;
 }
 .update-form{
-    margin-top:25px;
+    margin-top:30px;
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
     align-items:center;
     min-height:100vh;
+   
     
 }
 .form-data{

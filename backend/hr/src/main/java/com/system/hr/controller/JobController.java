@@ -20,7 +20,7 @@ import com.system.hr.service.JobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@RestController
+@RestController 
 @CrossOrigin(origins="http://localhost:5173")
 @Tag(name = "Jobs API", description = "Operations related to jobs")
 public class JobController {
