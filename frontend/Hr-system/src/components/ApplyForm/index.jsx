@@ -14,6 +14,7 @@ const ApplyForm = ()=>{
     const [error,setError] = useState(false)
     const [job,setJob] = useState({});
     const [applied,setApplied] = useState([])
+    const [role,setRole] = useState("")
 
      const listData = async ()=>{
                 
@@ -60,6 +61,25 @@ const ApplyForm = ()=>{
   }
 }, [error]);
 
+    useEffect(()=>{
+      const token = Cookies.get("token")
+      const email = Cookies.get("username")
+         const option = {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+             } 
+         }
+        async function role (){
+            const response = await fetch(`http://localhost:8080/api/check/${email}`,option)
+            const data = await response.json();
+            setRole(data.role);
+        }
+
+        role()
+    },[])
+
      
      const changeName = (event)=>{
         setName(event.target.value);
@@ -85,7 +105,6 @@ const ApplyForm = ()=>{
             body:JSON.stringify(data)
         }
         const pushData = await fetch(`http://localhost:8080/api/jobs/${param.id}/apply`,option);
-        console.log(pushData)
         if(pushData.ok){
            listData();
            setName("");
@@ -141,7 +160,9 @@ const ApplyForm = ()=>{
                   </ul>
 
                </div>
-               <div className="apply-details-container apply-details-container-special">
+               { 
+                  role==="Role_Candidate"&&
+                 <div className="apply-details-container apply-details-container-special">
                 <h2>!APPLY NOW!</h2>
                      {error && (
                         <div className="error-popup">
@@ -152,17 +173,18 @@ const ApplyForm = ()=>{
 
                     <form onSubmit={applyChanges}>
                         <div>
-                           <input type="text" value={name} required placeholder="Enter Candidate Name" onChange={changeName} className="apply-name"/>
+                           <input type="text" value={name} required placeholder="Enter Your Name" onChange={changeName} className="apply-name"/>
                         </div>
                         <div>
-                           <input type="email" required placeholder="Enter Candidate Email" onChange={changeEmail} className="apply-name"/>
+                           <input type="email" required placeholder="Enter Your Email" onChange={changeEmail} className="apply-name"/>
                         </div>
                         <div className="apply-btn-candidate-container">
                             <button type="submit" value={email} className="apply-btn-candidate">Apply</button>
                         </div>
                         
                     </form>
-               </div>
+                 </div>
+               }
              
            </div>
 

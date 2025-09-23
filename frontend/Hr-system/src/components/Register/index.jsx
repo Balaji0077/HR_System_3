@@ -1,13 +1,20 @@
 import {useState} from "react"
 import {useNavigate,Link} from "react-router-dom"
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import "./index.css"
 const Register = ()=>{
+    
+    const [open,setOpen] = useState(false)
     const [username,setUserName] = useState("")
     const [password,setPassword] = useState("")
     const [role,setRole] = useState("Role_Recruiter")
      const [checkCredentials,setCredentials] =  useState(false)
 
      const navigate = useNavigate()
+
+     
+
      const userNameChange = (event)=>{
          setUserName(event.target.value)
      }
@@ -42,12 +49,17 @@ const Register = ()=>{
          
           if(response.ok)
           { 
-      
+            
+            setOpen(true)
             setCredentials(false)
             setUserName("")
             setPassword("")
             setRole("Role_Recruiter")
-            navigate("/login")
+            
+            setTimeout(()=>{
+                 navigate("/login")
+            },3000)
+          
 
           }
           
@@ -57,6 +69,13 @@ const Register = ()=>{
       }
 
 
+    const handleClose = (event, reason) => {
+            if (reason === 'clickaway') {
+               return;
+            }
+
+            setOpen(false);
+       }
 
    return (
       <div className="login-page-container">
@@ -79,6 +98,7 @@ const Register = ()=>{
                      <select id="login-role" onChange={roleChange} className="input-box-login">
                         <option value="Role_Recruiter">Recruiter</option>
                         <option value="Role_Admin">Admin</option>
+                        <option value="Role_Candidate">Candidate</option>
                      </select>
                 </div> 
                  {checkCredentials&&<p className="warnings">**Username Already Exists! Please Login **</p>}
@@ -89,8 +109,20 @@ const Register = ()=>{
                    <p className="signup-text">Already have an account?  <Link to="/login"><span className="register-text">Login</span></Link></p>
                 </div>     
             </form>
-          </div>
             </div>
+       
+       <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}  anchorOrigin={{ vertical: "top", horizontal: "center" }}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          Registered Successfully!
+        </Alert>
+      </Snackbar>
+
+   </div>
    )
 }
 

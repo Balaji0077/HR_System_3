@@ -87,7 +87,7 @@ const CandidateList = ()=>{
 
     return (
     <>
-    { Cookies.get("token")!==undefined?
+    { Cookies.get("token")!==undefined && role!=="Role_Candidate"?
     <div className="candidate-list-container">
     <Navbar/>
     <div className="rz-wrapper">

@@ -72,3 +72,17 @@
 .candidate-apply-for-job-text{
     font-size:18px;
 }
+
+.candidate-dashboard-text{
+    font-family:"Roboto";
+    font-weight:900;
+    margin:20px;
+}
+.candidate-profile-to-identify{
+    width:50%;
+}
+.email-text{
+    
+    margin:20px;
+
+}

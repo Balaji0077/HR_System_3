@@ -10,7 +10,7 @@ const Login = ()=>{
      const [username,setUserName] = useState("")
      const [password,setPassword] = useState("")
      const [checkCredentials,setCredentials] =  useState(false)
-     
+
      const userNameChange = (event)=>{
          setUserName(event.target.value)
      }
@@ -45,9 +45,7 @@ const Login = ()=>{
             setCredentials(false)
             setUserName("")
             setPassword("")
-            
             navigate("/dashboard")
-
           }
           
           else{
@@ -58,8 +56,7 @@ const Login = ()=>{
 
      return <>
      { Cookies.get("token")===undefined?
-        <>   
-           
+        <> 
             <div className="login-page-container">
             <div className="login-box-container">
              <img src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1758346949~exp=1758350549~hmac=28b209d3cc1d80db14439123ccf8380880ba837de52678f013d0ae75d027f713&w=1060" alt="failure" className="profile-login-image"/>

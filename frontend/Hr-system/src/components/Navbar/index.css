@@ -19,6 +19,9 @@
         5px 5px 0 #ccc;
    
 }
+.home-link{
+    text-decoration:none;
+}
 .logo-container{
      display:flex;
      border:2px solid;
@@ -42,10 +45,23 @@
 }
 .logout-container{
     display:flex;
+  
 }
 .logout-icon{
     font-size:30px;
     align-self:center;
     margin-right:0px;
     cursor:pointer;
+}
+.logout-home-container{
+    display:flex;
+}
+.icon-home{
+    color:#000000;
+}
+.text-home{
+    color:#000000;
+    margin-right:20px;
+    margin-left:-10px;
+    margin-top:2px;
 }
